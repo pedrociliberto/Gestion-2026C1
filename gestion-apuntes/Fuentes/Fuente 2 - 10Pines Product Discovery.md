@@ -21,7 +21,7 @@ Para desarrollar acordemente esta etapa, se facilitan una serie de **talleres** 
 
 Marty Cagan dice que un producto debe ser **valioso, usable y posible de desarrollar** para que sea exitoso.
 
-### Talleres de *Prodyct Discovery*
+### Talleres de *Product Discovery*
 
 Se realizan reuniones en conjunto con los clientes y empleando distintas herramientas para que todos se involucren. 
 
