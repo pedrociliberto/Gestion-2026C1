@@ -1,0 +1,39 @@
+services:
+  db_test:
+    image: postgres:15-alpine
+    ports:
+      - "5433:5433"
+    environment:
+      PGPORT: 5433
+      POSTGRES_USER: hangout_usr
+      POSTGRES_PASSWORD: gdsi2026
+      POSTGRES_DB: hangout
+    volumes:
+      - ./data_db/prod:/var/lib/postgresql/data
+
+  db_dev:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: hangout_usr
+      POSTGRES_PASSWORD: gdsi2026
+      POSTGRES_DB: hangout
+    volumes:
+      - ./data_db/dev:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    tty: true
+    ports:
+      - "3000:3000"
+    expose:
+      - 3000
+    volumes:
+      - ./backend:/backend
+    environment:
+      - DEV_DB_URL=postgresql://hangout_usr:gdsi2026@db_dev:5432/hangout
+      - TEST_DB_URL=postgresql://hangout_usr:gdsi2026@db_test:5433/hangout
+    depends_on:
+      - db_test
+      - db_dev
